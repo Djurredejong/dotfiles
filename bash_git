@@ -1,0 +1,37 @@
+function parse_git_dirty {
+  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit, working tree clean" ]] && echo "*"
+}
+
+function parse_git_branch {
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/[\1$(parse_git_dirty)]/"
+}
+
+# Based on http://stackoverflow.com/questions/13064613/how-to-prune-local-tracking-branches-that-do-not-exist-on-remote-anymore
+function git_cleanup {
+  git gc # garbage collection                                                                                             
+  git remote prune origin                                                                                                 
+  #git fetch --prune
+  git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}' | xargs git branch -D
+}
+
+alias gd='git diff'
+alias gdf='git diff --name-only'
+alias gst='git status'
+alias gco='git checkout'
+alias gl='git logline'
+alias gs='git stash'
+alias gm='git merge'
+alias gm='git pull'
+
+if [ -f ~/.git-completion.bash ]; then
+
+  . ~/.git-completion.bash
+  
+  # Add git completion to aliases (https://gist.github.com/JuggoPop/10706934)
+  __git_complete gco _git_checkout
+  #__git_complete g __git_main
+  __git_complete gm __git_merge
+  __git_complete gp _git_pull
+fi
+
+export PS1='\[\033[01;32m\][\d \t]\[\033[00m\] \[\033[01;31m\]\w\[\033[0;33m\]$(parse_git_branch)\[\e[0m\] '

@@ -1,0 +1,5 @@
+*.swp
+bash_secrets
+/.bash_secrets
+gitconfig.local
+/.gitconfig.local

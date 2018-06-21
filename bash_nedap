@@ -1,0 +1,90 @@
+# 172.17.0.1 is the default docker0 bridge IP address
+DOCKER_CONTAINER_HOST=172.17.0.1
+# Deprecated: Remove once CONTAINER_HOST is supported everywhere
+DOCKER_CONTAINER_HOST_IP=172.17.0.1
+
+export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
+export JAVAC=$JAVA_HOME/bin/javac
+export MAVEN_OPTS="-XX:MaxPermSize=2048m -Xmx2048m"
+export IOSERVER_HOME=$HOME/src/ioserver
+export JBOSS_HOME=$IOSERVER_HOME/data/jboss-eap-6.2
+
+alias iobuildit7="cd ${IOSERVER_HOME} && mvn clean install -DskipTests -DjbossVersion=7 -Pit-profile-jboss7 -DskipYui=true -Pjrebel -T 1C"
+alias iocleanjboss7="cd ${IOSERVER_HOME}/setup/jboss7 && mvn clean install -DjbossVersion=7"
+alias iostart7="PROMPT_COMMAND='echo -ne \"\033]0;ioserver\007\"' && cd ${IOSERVER_HOME}/setup/startup7 && set_j8 && mvn install -Pdebug -DjbossVersion=7"
+alias ioinitdb="cd ${IOSERVER_HOME}/setup/build-db && mvn initialize db:create"
+alias iocleanstartjboss7="export JBOSS_HOME=${JBOSS_HOME} && cd ${IOSERVER_HOME} && iocleanjboss7 && iobuildit7 && iostart7"
+
+function set_j7 {
+  sudo update-alternatives --set java /usr/lib/jvm/java-7-openjdk-amd64/jre/bin/java
+  sudo update-alternatives --set javac /usr/lib/jvm/java-7-openjdk-amd64/bin/javac
+  export JAVA_HOME=$(readlink -f /usr/bin/java | sed 's:bin/java::')
+}
+function set_j8 {
+  sudo update-alternatives --set javac /usr/lib/jvm/java-8-oracle/bin/javac
+  sudo update-alternatives --set java /usr/lib/jvm/java-8-oracle/jre/bin/java
+  export JAVA_HOME=$(readlink -f /usr/bin/java | sed 's:bin/java::')
+}
+
+function start_cupido {
+  PROMPT_COMMAND='echo -ne "\033]0;cupido\007"'
+  set_j7
+  cd $HOME/src/cupido
+  ./start.sh
+}
+function start_xstream {
+  PROMPT_COMMAND='echo -ne "\033]0;x-stream\007"'
+  set_j8
+  cd $HOME/src/x-stream-connect
+  ./start.sh
+}
+function start_portal {
+  PROMPT_COMMAND='echo -ne "\033]0;medewerkportaal\007"'
+  cd $HOME/src/medewerkerportaal/
+  ./start.sh
+}
+function start_hub {
+  PROMPT_COMMAND='echo -ne "\033]0;Hub\007"'
+  cd $HOME/src/hub/ 
+  ./start.sh
+}
+function start_router {
+  PROMPT_COMMAND='echo -ne "\033]0;router\007"'
+  cd $HOME/src/ons-router/
+  ./start.sh
+}
+
+function start_agenda {
+  PROMPT_COMMAND='echo -ne "\033]0;Agenda\007"'
+  cd $HOME/src/Behandel-Ons/ 
+  ./start.sh
+}
+function start_clientagenda {
+  PROMPT_COMMAND='echo -ne "\033]0;clientagenda\007"'
+  cd $HOME/src/ons-clientagenda/ 
+  ./start.sh
+}
+function start_hermes {
+  PROMPT_COMMAND='echo -ne \"\033]0;hermes\007\"'
+  cd $HOME/src/hermes/
+  ./start.sh
+}
+
+function start_basic {
+  gnome-terminal --tab --title="cupido" -e "start_cupido" --tab-with-profile=BehandelOns --title="xstream" -e "start_xstream" --tab-with-profile=BehandelOns --title="iostart7" -e "iostart7" --tab-with-profile=BehandelOns --title="portal" -e "start_portal"  --tab-with-profile=BehandelOns --title="hub" -e "start_hub" --tab-with-profile=BehandelOns --title="router" -e "start_router"
+}
+function patch {
+  bundle exec rake release:final:patch
+  git checkout master
+  git cherry-pick -x `git rev-parse -`
+  git checkout --ours VERSION
+  sed -i '/<<<<<<</ d' CHANGELOG.md
+  sed -i '/=======/ d' CHANGELOG.md
+  sed -i '/>>>>>>>/ d' CHANGELOG.md
+  echo 'Make sure all changes have been correctly cherry-picked (e.g. using git diff), and commit it using:
+        git commit -a --no-edit
+        git push'
+  #git commit -a --no-edit
+  #git push
+  git checkout -
+}
