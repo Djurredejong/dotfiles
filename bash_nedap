@@ -7,7 +7,7 @@ export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
 export JAVAC=$JAVA_HOME/bin/javac
 export MAVEN_OPTS="-XX:MaxPermSize=2048m -Xmx2048m"
 export IOSERVER_HOME=$HOME/src/ioserver
-export JBOSS_HOME=$IOSERVER_HOME/data/jboss-eap-6.2
+export JBOSS_HOME=$IOSERVER_HOME/data/jboss-eap-6.4
 
 alias iobuildit7="cd ${IOSERVER_HOME} && mvn clean install -DskipTests -DjbossVersion=7 -Pit-profile-jboss7 -DskipYui=true -Pjrebel -T 1C"
 alias iocleanjboss7="cd ${IOSERVER_HOME}/setup/jboss7 && mvn clean install -DjbossVersion=7"

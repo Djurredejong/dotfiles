@@ -29,6 +29,13 @@ set pastetoggle=<F2> 		        " when in insert mode, press <F2> to go to
                                 "    that won't be autoindented
 set autoread 			              " automatically reload files changed outside of Vim
 
+"let g:indent_guides_enable_on_vim_startup = 1
+
+" Got to last line
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+endif
+
 " Avoid a end of line at the end of each file
 autocmd FileType ruby setlocal noeol binary fileformat=dos
 autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2
