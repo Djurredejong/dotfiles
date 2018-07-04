@@ -6,11 +6,12 @@ dotfiles to be included in `$HOME` or `$HOME/.ssh`, using:
 
 
 ```
-ln -sf ./bashrc ../.bashrc
-ln -sf ./bash_aliases ../.bash_aliases
-ln -sf ./bash_nedap ../.bash_nedap
-ln -sf ./bash_git ../.bash_git
-ln -sf ./git-completion.bash ../.git-completions.bash
-ln -sf ./gitconfig ../.gitconfig
-ln -sf ./ssh_config ../.ssh/config
+ln -sf $PWD/bashrc $HOME/.bashrc
+ln -sf $PWD/bash_aliases $HOME/.bash_aliases
+ln -sf $PWD/bash_nedap $HOME/.bash_nedap
+ln -sf $PWD/bash_git $HOME/.bash_git
+ln -sf $PWD/git-completion.bash $HOME/.git-completions.bash
+ln -sf $PWD/gitconfig $HOME/.gitconfig
+ln -sf $PWD/ssh_config $HOME/.ssh/config
+ln -sf $PWD/csshrc_cluster $HOME/.clusterssh/clusters
 ```
