@@ -7,6 +7,9 @@ esac
 # don't put duplicate lines or lines starting with space in the history.
 HISTCONTROL=ignoreboth
 
+# to avoid freezing the terminal with CTRL-S
+stty -ixon
+
 # Just to be sure:
 export HOME="/home/Djurre.deJong"
 export PATH="$HOME/bin:/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:."
@@ -25,7 +28,6 @@ bind 'set match-hidden-files off'
 
 # don't let me logout using ctrl-D
 set -o ignoreeof
-set bell-style none
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.

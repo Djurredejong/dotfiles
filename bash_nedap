@@ -3,6 +3,8 @@ DOCKER_CONTAINER_HOST=172.17.0.1
 # Deprecated: Remove once CONTAINER_HOST is supported everywhere
 DOCKER_CONTAINER_HOST_IP=172.17.0.1
 
+export ENABLE_TEST_LOG=true
+
 export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
 export JAVAC=$JAVA_HOME/bin/javac
 export MAVEN_OPTS="-XX:MaxPermSize=2048m -Xmx2048m"

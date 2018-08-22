@@ -14,4 +14,5 @@ ln -sf $PWD/git-completion.bash $HOME/.git-completions.bash
 ln -sf $PWD/gitconfig $HOME/.gitconfig
 ln -sf $PWD/ssh_config $HOME/.ssh/config
 ln -sf $PWD/csshrc_cluster $HOME/.clusterssh/clusters
+ln -sf $PWD/inputrc $HOME/.inputrc
 ```
