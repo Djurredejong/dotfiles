@@ -5,6 +5,7 @@ alias be='bundle exec'
 alias duh='du -h --max-depth=1'
 alias mv='mv -i'
 alias cp='cp -i'
+alias rm='rm -i'
 
 alias dc='docker-compose'
 alias dcu='docker-compose up'
