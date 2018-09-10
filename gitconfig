@@ -8,3 +8,9 @@
 	default = current
 [alias]
 	logline = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --branches -50
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg2
+[user]
+	signingkey = 74BF207C
