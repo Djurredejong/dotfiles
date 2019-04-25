@@ -21,7 +21,7 @@ alias gco='git checkout'
 alias gl='git logline'
 alias gs='git stash'
 alias gm='git merge'
-alias gm='git pull'
+alias gp='git pull'
 
 if [ -f ~/.git-completion.bash ]; then
 

@@ -13,6 +13,8 @@ stty -ixon
 # Just to be sure:
 export HOME="/home/Djurre.deJong"
 export PATH="$HOME/bin:/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:."
+# for laravel
+export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 
 # append to the history file, don't overwrite it
 shopt -s histappend

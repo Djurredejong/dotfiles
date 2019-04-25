@@ -34,6 +34,15 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 endif
 
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+
+autocmd FileType c,cpp,java,php,ruby,python,javascript autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+
 " Avoid a end of line at the end of each file
 autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2
 let g:rubycomplete_buffer_loading = 1

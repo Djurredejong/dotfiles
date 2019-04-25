@@ -8,9 +8,15 @@
 	default = current
 [alias]
 	logline = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --branches -50
+  b = branch --sort=committerdate
+  vdiff = log --left-right --graph --cherry-pick --oneline
 [commit]
 	gpgsign = true
 [gpg]
 	program = gpg2
 [user]
-	signingkey = 74BF207C
+	signingkey = 20D008A9E11E7DE2
+	name = Djurre de Jong
+	email = djurre.dejong@nedap.com
+[github]
+	user = djurredejong

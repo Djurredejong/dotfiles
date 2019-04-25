@@ -1,0 +1,5 @@
+# Settings based on https://github.com/nedap/steppingstone/blob/master/yubikey/tools_installation.md
+# Added by DdJ, 8-4-2019
+# `ln -sf dotfiles/xprofile .xprofile`
+# Start the gpg-agent
+eval $(gpg-agent --daemon)
