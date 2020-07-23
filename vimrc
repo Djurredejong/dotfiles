@@ -1,3 +1,6 @@
+" git://github.com/jiangmiao/auto-pairs.git
+" git://github.com/tpope/vim-endwise.git
+"
 " Easy installation of .vim plugins https://github.com/tpope/vim-pathogen
 " (just copy the .vim file to ~/.vim/bundle)
 filetype off                      " force reloading *after* pathogen loaded
@@ -48,6 +51,20 @@ autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2
 let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_rails = 1
 
+" Set specific linters
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\   'ruby': ['rubocop'],
+\}
+" Only run linters named in ale_linters settings.
+let g:ale_linters_explicit = 1 
+" show errors in airline bar
+let g:airline#extensions#ale#enabled = 1 
+" Always show extra column
+let g:ale_sign_column_always = 1
+" Disable ALE auto highlights
+let g:ale_set_highlights = 0 
+
 " Always start the NERD Tree ()
 " And make it work for all tabs (https://github.com/jistr/vim-nerdtree-tabs)
 "autocmd VimEnter * NERDTree
@@ -67,6 +84,7 @@ set wildmenu            " visual autocomplete for command menu
 set termencoding=utf-8
 set encoding=utf-8
 let g:indentLine_color_term = 6
+let g:indentLine_setConceal = 0
 
 " CtrlP settings
 "let g:ctrlp_match_window = 'bottom,order:ttb'  "ordering of files

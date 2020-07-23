@@ -22,6 +22,8 @@ alias gl='git logline'
 alias gs='git stash'
 alias gm='git merge'
 alias gp='git pull'
+alias gb='git branch'
+alias gc='git commit -am'
 
 if [ -f ~/.git-completion.bash ]; then
 

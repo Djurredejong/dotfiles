@@ -18,9 +18,10 @@ alias ioinitdb="cd ${IOSERVER_HOME}/setup/build-db && mvn initialize db:create"
 alias iocleanstartjboss7="export JBOSS_HOME=${JBOSS_HOME} && cd ${IOSERVER_HOME} && iocleanjboss7 && iobuildit7 && iostart7"
 
 function set_j7 {
-  sudo update-alternatives --set java /usr/lib/jvm/java-7-openjdk-amd64/jre/bin/java
-  sudo update-alternatives --set javac /usr/lib/jvm/java-7-openjdk-amd64/bin/javac
+  sudo update-alternatives --set java /usr/lib/jvm/zulu-7-amd64/bin/java
+  sudo update-alternatives --set javac /usr/lib/jvm/zulu-7-amd64/bin/javac
   export JAVA_HOME=$(readlink -f /usr/bin/java | sed 's:bin/java::')
+  #export JAVA_HOME=$(/usr/
 }
 function set_j8 {
   sudo update-alternatives --set javac /usr/lib/jvm/java-8-oracle/bin/javac

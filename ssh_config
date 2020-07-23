@@ -1,16 +1,21 @@
 #### NEDAP CONFIGURATION ####
+Host nvs*
+  User djurre.dejong
+  ForwardAgent yes
+  IdentityFile ~/.ssh/nedap_rsa
+
 Host beheer1.ioservice.net beheer1.stpst.nl beheer2.ioservice.net beheer2.stpst.nl
   User djurre.dejong
   ForwardAgent yes
-  IdentitiesOnly yes
-  #IdentityFile ~/.ssh/nedap_rsa
+  #IdentitiesOnly yes
+  IdentityFile ~/.ssh/nedap_rsa
 
-Host nl12* nl14* nl22* vm* nvs* *.healthcare.nedap.local *.consul
+Host nl12* nl14* nl22* vm* nvs* nas* *.healthcare.nedap.local *.consul
   User djurre.dejong
   ForwardAgent yes
-  ProxyCommand ssh -q beheer1.ioservice.net nc -q0 %h %p
-  IdentitiesOnly yes
-  #IdentityFile ~/.ssh/nedap_rsa
+  ProxyJump beheer1.ioservice.net
+  #IdentitiesOnly yes
+  IdentityFile ~/.ssh/nedap_rsa
   VerifyHostKeyDNS no
 
 # Workaround for deployment methods that create
@@ -18,8 +23,8 @@ Host nl12* nl14* nl22* vm* nvs* *.healthcare.nedap.local *.consul
 Host 127.0.0.1
   User djurre.dejong
   ForwardAgent yes
-  IdentitiesOnly yes
-  #IdentityFile ~/.ssh/nedap_rsa
+  #IdentitiesOnly yes
+  IdentityFile ~/.ssh/nedap_rsa
   VerifyHostKeyDNS no
 
 #### GITHUB CONFIGURATION ####

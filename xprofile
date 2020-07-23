@@ -2,4 +2,4 @@
 # Added by DdJ, 8-4-2019
 # `ln -sf dotfiles/xprofile .xprofile`
 # Start the gpg-agent
-eval $(gpg-agent --daemon)
+#eval $(gpg-agent --daemon)

@@ -103,7 +103,35 @@ function apt-history(){
       esac
 }
 
+# turn off caps lock
+setxkbmap -option ctrl:nocaps
+
 # add ssh identy for every session, Ddj feb 2018
-eval "$(ssh-agent -s)"
+#eval $(gpg-agent --daemon --disable-scdaemon --enable-ssh-support)
+#eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/github_ed25519
-ssh-add ~/.ssh/nedap_rsa
+#ssh-add ~/.ssh/nedap_rsa
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/Djurre.deJong/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/Djurre.deJong/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/Djurre.deJong/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/Djurre.deJong/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+
+. $HOME/.asdf/asdf.sh
+
+. $HOME/.asdf/completions/asdf.bash
