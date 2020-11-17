@@ -129,6 +129,7 @@ else
     fi
 fi
 unset __conda_setup
+set bell-style none
 # <<< conda initialize <<<
 
 
