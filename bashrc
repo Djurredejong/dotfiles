@@ -76,7 +76,7 @@ eval "$(rbenv init -)"
 =(){ awk "BEGIN{ print $* }" ;}
 
 export EDITOR="vi"
-export BUNDLER_EDITOR="subl"
+export BUNDLER_EDITOR="code"
  
 export CAP_USER=djurre.dejong
 export CAP_KEY_PATH=$HOME/.ssh/nedap_rsa
@@ -116,8 +116,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
+#>>> conda initialize >>>
+#!! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/Djurre.deJong/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
@@ -130,7 +130,7 @@ else
 fi
 unset __conda_setup
 set bell-style none
-# <<< conda initialize <<<
+#<<< conda initialize <<<
 
 
 . $HOME/.asdf/asdf.sh
